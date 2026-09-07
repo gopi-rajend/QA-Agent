@@ -1,156 +1,223 @@
-# DeepEval Metrics Implementation with RAG
+# QA Agent
 
-This repository demonstrates a Retrieval-Augmented Generation (RAG) workflow enhanced with DeepEval-based evaluation metrics. It combines a React-based front end, a Node.js/Express backend, and a Python FastAPI service to evaluate generated answers against retrieved context.
+A Retrieval-Augmented Generation (RAG) platform for QA teams. QA Agent combines application knowledge, specialized QA capabilities, LLM reasoning, and validation checkpoints to produce review-ready test artifacts.
 
-The project is designed to showcase how to:
+Created by Gopi Rajendran.
 
-- build and query a RAG system over structured project data
-- index and retrieve documents using hybrid search approaches
-- generate embeddings for search and retrieval
-- evaluate answer quality using DeepEval metrics such as faithfulness, answer relevancy, contextual precision, and contextual recall
+Repository: https://github.com/gopi-rajend/QA-Agent
 
----
+## What It Does
 
-## Project Overview
+QA Agent provides a portal for:
 
-This repo contains two main components:
+- Requirement analysis
+- Test case generation
+- Test data generation
+- API and BDD mapping
+- Defect analysis
+- Test plan creation
 
-1. DeepEval Evaluation Service
-   - A Python FastAPI service that exposes evaluation endpoints
-   - Uses DeepEval and LLM-based scoring for RAG evaluation
+The workflow is organized as:
 
-2. RAG Implementation
-   - A Node.js server for document ingestion, search, and retrieval
-   - A React client to interact with the search and evaluation flow
+```text
+QA request
+  -> Agent orchestrator
+  -> RAG knowledge retrieval
+  -> Specialized QA reasoning
+  -> Validation and guardrails
+  -> Structured QA output
+```
 
----
+## Architecture
 
-## Features
+### QA Agent portal
 
-- Hybrid retrieval workflow using BM25 and vector-based search
-- Embedding generation and storage support for project data
-- Search over Jira stories, test cases, and related content
-- React-based UI for querying and exploring results
-- DeepEval-powered evaluation for:
-  - faithfulness
-  - answer relevancy
-  - contextual precision
-  - contextual recall
-  - conversation completeness
-  - hallucination, bias, and toxicity checks
+The React client lets a QA engineer select a capability, describe an objective, choose an application area, and review the generated result.
 
----
+### Agent orchestrator
 
-## Repository Structure
+The Node.js/Express API receives the selected capability and request, creates an agent plan, identifies retrieval sources, applies validation checks, and returns a structured QA response.
+
+The orchestration endpoint is:
+
+```text
+POST /api/qa/orchestrate
+```
+
+### RAG knowledge layer
+
+The RAG implementation supports application-specific knowledge from:
+
+- User stories
+- Historical test cases
+- API specifications
+- Defect history
+- QA standards and templates
+
+MongoDB Atlas stores searchable documents and vector embeddings. Mistral generates embeddings, while Groq supports reranking and summarization.
+
+### Evaluation service
+
+The optional DeepEval service is a Python FastAPI sidecar for evaluating generated outputs with metrics such as faithfulness, answer relevancy, contextual precision, contextual recall, hallucination, bias, toxicity, and conversation completeness.
+
+## Project Structure
 
 ```text
 deepeval-implementation/
-  deepeval_server.py
-  requirements.txt
-  src/
-  test_metrics_diagnostic.py
+  deepeval_server.py       DeepEval FastAPI service
+  requirements.txt          Python dependencies
+  src/                     Evaluation service code
 
 rag-implementation/
-  client/
-  server/
-  src/
-  scripts/
+  client/                  React QA Agent portal
+  server/                  Express API and orchestration routes
+  src/config/              Search index configuration
+  src/data/                Local JSON data sources
+  src/scripts/             Embeddings, search, preprocessing, and utilities
+  .env.example             Environment variable template
 ```
 
----
-
-## Prerequisites
-
-Before running the project, make sure you have:
+## Requirements
 
 - Node.js and npm
-- Python 3.9+
-- Access to required LLM/API providers such as OpenAI or Groq
-- MongoDB Atlas or a compatible MongoDB environment if you are using the vector search flow
+- Python 3.9 or later for the optional DeepEval service
+- MongoDB Atlas or a compatible MongoDB deployment for live RAG search
+- Mistral API access for embeddings
+- Groq API access for reranking and summarization
+- OpenAI API access only when using OpenAI-backed DeepEval metrics
 
----
+## Configuration
 
-## Environment Variables
+Copy the environment template:
 
-Configure the required service credentials and connection settings securely in your environment before running the application. The exact variables depend on your local setup and the model providers you choose to use.
-
-If you are using the provided services, make sure to set the required environment variables in your shell or deployment platform without including secrets in the repository.
-
----
-
-## Installation
-
-### 1) Install Python dependencies
-
-```bash
-cd deepeval-implementation
-pip install -r requirements.txt
+```powershell
+cd rag-implementation
+Copy-Item .env.example .env
 ```
 
-### 2) Install Node.js dependencies
+Update `rag-implementation/.env` with the credentials and MongoDB details for the person or team running the project:
 
-```bash
+```env
+MONGODB_URI="mongodb+srv://<username>:<password>@<cluster>"
+DB_NAME="db_stories_tests"
+COLLECTION_NAME="test_cases"
+VECTOR_INDEX_NAME="vector_index_test_cases"
+BM25_INDEX_NAME="bm25_search"
+USER_STORIES_COLLECTION_NAME="user_stories"
+USER_STORIES_VECTOR_INDEX_NAME="vector_index_user_story"
+
+MISTRAL_API_KEY="<their-mistral-api-key>"
+MISTRAL_EMBEDDING_MODEL="mistral-embed"
+
+GROQ_API_KEY="<their-groq-api-key>"
+GROQ_RERANK_MODEL="openai/gpt-oss-120b"
+GROQ_SUMMARIZATION_MODEL="openai/gpt-oss-120b"
+```
+
+For DeepEval, configure provider keys in the environment used to start the Python service:
+
+```env
+GROQ_API_KEY="<their-groq-api-key>"
+OPENAI_API_KEY="<their-openai-api-key>"
+```
+
+Never commit `.env` files or share API keys in the repository. Each user should create and manage their own credentials.
+
+### MongoDB requirements
+
+The MongoDB account must have:
+
+- Access to the configured database and collections
+- Network access from the machine running the project
+- The configured vector search index
+- The configured BM25 search index
+- Read/write permissions when creating embeddings
+
+## Install
+
+Install the Node.js application dependencies:
+
+```powershell
 cd rag-implementation
 npm install
 ```
 
-The project also installs the React client dependencies automatically through the root package setup.
+Install the optional DeepEval dependencies:
 
----
+```powershell
+cd deepeval-implementation
+python -m pip install -r requirements.txt
+```
 
-## Running the Application
+## Run the Application
 
-### Start the DeepEval service
+### QA Agent portal and API
 
-```bash
+From `rag-implementation`:
+
+```powershell
+npm run dev
+```
+
+Default endpoints:
+
+- React portal: http://localhost:3000
+- Node.js API: http://localhost:3001
+- API health check: http://localhost:3001/api/health
+
+The dev command starts the React client and Express server together.
+
+### DeepEval service
+
+In a separate terminal:
+
+```powershell
 cd deepeval-implementation
 python deepeval_server.py
 ```
 
-This starts the FastAPI server on port 8000 by default.
+Default DeepEval endpoint:
 
-### Start the RAG application
+- FastAPI service: http://localhost:8000
+- API documentation: http://localhost:8000/docs
 
-In a separate terminal:
-
-```bash
-cd rag-implementation
-npm run dev
-```
-
-This will start the backend and client app for the RAG workflow.
-
----
+Ports can be changed if the defaults are already in use. Update any client or service URL configuration when using custom ports.
 
 ## Usage
 
-1. Open the React client in your browser.
-2. Upload or load the relevant data sources.
-3. Run searches or queries through the interface.
-4. Use the evaluation service to score the generated outputs using DeepEval metrics.
+1. Open http://localhost:3000.
+2. Select a QA capability from the navigation.
+3. Enter a QA objective and application area.
+4. Select **Run QA workflow**.
+5. Review the agent plan, retrieved context, validation checks, and generated output.
+6. Export or adapt the output for the team QA repository or test management tool.
 
----
+The portal includes a preview fallback when live API services are unavailable. Live retrieval and provider-backed processing require MongoDB and the appropriate API keys.
 
-## Notes
+## Useful Commands
 
-- Some parts of the project depend on external API keys and cloud services.
-- The evaluation pipeline is intended for experimentation and demonstration purposes.
-- For production use, consider adding authentication, secure secret management, logging, and more robust deployment configuration.
+```powershell
+# Start client and API
+cd rag-implementation
+npm run dev
 
----
+# Build the React client
+npm run build
+
+# Check server syntax
+node server/index.js
+
+# Start DeepEval separately
+cd ..\deepeval-implementation
+python deepeval_server.py
+```
+
+## Security and Handoff Notes
+
+For another person to run the project, share the repository and the required configuration names, not your private credentials. They need their own MongoDB connection details and provider API keys for live usage. Preview-only portal usage does not require live MongoDB or LLM credentials.
+
+For production use, add authentication, secret management, request logging, rate limiting, protected CORS settings, and persistent job storage before exposing the services publicly.
 
 ## License
 
-This project is intended for educational and demonstration purposes. Please check the repository owner’s licensing terms before reuse or redistribution.
-
----
-
-## Acknowledgements
-
-This project uses:
-- DeepEval
-- FastAPI
-- Express
-- React
-- MongoDB
-- OpenAI / Groq / Mistral APIs
+This project is intended for educational and demonstration purposes. Confirm the applicable licensing terms before redistributing or using it commercially.
