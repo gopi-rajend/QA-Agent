@@ -56,19 +56,10 @@ The RAG implementation supports application-specific knowledge from:
 
 MongoDB Atlas stores searchable documents and vector embeddings. Mistral generates embeddings, while Groq supports reranking and summarization.
 
-### Evaluation service
-
-The optional DeepEval service is a Python FastAPI sidecar for evaluating generated outputs with metrics such as faithfulness, answer relevancy, contextual precision, contextual recall, hallucination, bias, toxicity, and conversation completeness.
-
 ## Project Structure
 
 ```text
-deepeval-implementation/
-  deepeval_server.py       DeepEval FastAPI service
-  requirements.txt          Python dependencies
-  src/                     Evaluation service code
-
-rag-implementation/
+QA-Agent/
   client/                  React QA Agent portal
   server/                  Express API and orchestration routes
   src/config/              Search index configuration
@@ -80,22 +71,20 @@ rag-implementation/
 ## Requirements
 
 - Node.js and npm
-- Python 3.9 or later for the optional DeepEval service
 - MongoDB Atlas or a compatible MongoDB deployment for live RAG search
 - Mistral API access for embeddings
 - Groq API access for reranking and summarization
-- OpenAI API access only when using OpenAI-backed DeepEval metrics
 
 ## Configuration
 
 Copy the environment template:
 
 ```powershell
-cd rag-implementation
+cd QA-Agent
 Copy-Item .env.example .env
 ```
 
-Update `rag-implementation/.env` with the credentials and MongoDB details for the person or team running the project:
+Update `QA-Agent/.env` with the credentials and MongoDB details for the person or team running the project:
 
 ```env
 MONGODB_URI="mongodb+srv://<username>:<password>@<cluster>"
@@ -112,13 +101,6 @@ MISTRAL_EMBEDDING_MODEL="mistral-embed"
 GROQ_API_KEY="<their-groq-api-key>"
 GROQ_RERANK_MODEL="openai/gpt-oss-120b"
 GROQ_SUMMARIZATION_MODEL="openai/gpt-oss-120b"
-```
-
-For DeepEval, configure provider keys in the environment used to start the Python service:
-
-```env
-GROQ_API_KEY="<their-groq-api-key>"
-OPENAI_API_KEY="<their-openai-api-key>"
 ```
 
 Never commit `.env` files or share API keys in the repository. Each user should create and manage their own credentials.
@@ -138,22 +120,15 @@ The MongoDB account must have:
 Install the Node.js application dependencies:
 
 ```powershell
-cd rag-implementation
+cd QA-Agent
 npm install
-```
-
-Install the optional DeepEval dependencies:
-
-```powershell
-cd deepeval-implementation
-python -m pip install -r requirements.txt
 ```
 
 ## Run the Application
 
 ### QA Agent portal and API
 
-From `rag-implementation`:
+From `QA-Agent`:
 
 ```powershell
 npm run dev
@@ -166,20 +141,6 @@ Default endpoints:
 - API health check: http://localhost:3001/api/health
 
 The dev command starts the React client and Express server together.
-
-### DeepEval service
-
-In a separate terminal:
-
-```powershell
-cd deepeval-implementation
-python deepeval_server.py
-```
-
-Default DeepEval endpoint:
-
-- FastAPI service: http://localhost:8000
-- API documentation: http://localhost:8000/docs
 
 Ports can be changed if the defaults are already in use. Update any client or service URL configuration when using custom ports.
 
@@ -198,7 +159,7 @@ The portal includes a preview fallback when live API services are unavailable. L
 
 ```powershell
 # Start client and API
-cd rag-implementation
+cd QA-Agent
 npm run dev
 
 # Build the React client
@@ -207,9 +168,6 @@ npm run build
 # Check server syntax
 node server/index.js
 
-# Start DeepEval separately
-cd ..\deepeval-implementation
-python deepeval_server.py
 ```
 
 ## Security and Handoff Notes
