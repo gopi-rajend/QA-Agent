@@ -1,490 +1,76 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import {
-  CssBaseline,
-  ThemeProvider,
-  createTheme,
-  Box,
-  AppBar,
-  Toolbar,
-  Typography,
-  Drawer,
-  List,
-  ListItem,
-  ListItemIcon,
-  ListItemText,
-  ListItemButton,
-  Divider,
-  Container,
-  IconButton,
-  Tooltip,
-  Breadcrumbs,
-  Link,
-  useMediaQuery,
-  Collapse,
-  Switch,
-  FormControlLabel,
-  Fade
+  Box, Button, Chip, CssBaseline, Divider, Drawer, IconButton,
+  LinearProgress, List, ListItemButton, ListItemIcon, ListItemText, Paper,
+  Stack, ThemeProvider, Tooltip, Typography, createTheme,
 } from '@mui/material';
 import {
-  Transform as TransformIcon,
-  Storage as StorageIcon,
-  Settings as SettingsIcon,
-  Search as SearchIcon,
-  Dashboard as DashboardIcon,
-  Menu as MenuIcon,
-  ChevronLeft as ChevronLeftIcon,
-  Brightness4 as DarkModeIcon,
-  Brightness7 as LightModeIcon,
-  NavigateNext as NavigateNextIcon,
-  TextFields as KeywordIcon,
-  AutoFixHigh as HybridIcon,
-  CompareArrows as RerankIcon,
-  Psychology as PreprocessIcon,
-  Summarize as SummarizeIcon,
-  Schema as SchemaIcon
+  AssessmentOutlined, BugReportOutlined, ChecklistOutlined, ChevronLeft,
+  ContentPasteSearchOutlined, DescriptionOutlined, DownloadOutlined, HubOutlined,
+  IntegrationInstructionsOutlined, Menu, PsychologyOutlined, ScienceOutlined,
+  SettingsOutlined, ShieldOutlined, StorageOutlined, TableChartOutlined,
+  UploadFileOutlined,
 } from '@mui/icons-material';
-import { SnackbarProvider } from 'notistack';
+import { SnackbarProvider, useSnackbar } from 'notistack';
+import './App.css';
 
-// Import components
-import ConvertToJson from './components/data/ConvertToJson';
-import EmbeddingsStore from './components/data/EmbeddingsStore';
-import QuerySearch from './components/search/QuerySearch';
-import BM25Search from './components/search/BM25Search';
-import HybridSearch from './components/search/HybridSearch';
-import RerankingSearch from './components/search/RerankingSearch';
-import QueryPreprocessing from './components/processing/QueryPreprocessing';
-import SummarizationDedup from './components/processing/SummarizationDedup';
-import PromptSchemaManager from './components/processing/PromptSchemaManager';
-import Settings from './components/settings/Settings';
-
-// Enterprise color palette
-const createEnterpriseTheme = (mode) => createTheme({
-  palette: {
-    mode,
-    primary: {
-      main: '#0D47A1', // Deep blue
-      light: '#5472D3',
-      dark: '#002171',
-      contrastText: '#ffffff'
-    },
-    secondary: {
-      main: '#FF6F00', // Amber
-      light: '#FF9F40',
-      dark: '#C43E00',
-      contrastText: '#000000'
-    },
-    background: {
-      default: mode === 'light' ? '#F4F6F8' : '#121212',
-      paper: mode === 'light' ? '#FFFFFF' : '#1E1E1E'
-    },
-    text: {
-      primary: mode === 'light' ? '#1A1A1A' : '#FFFFFF',
-      secondary: mode === 'light' ? '#6B7280' : '#B0B0B0'
-    }
-  },
-  typography: {
-    fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
-    h4: {
-      fontWeight: 700,
-      fontSize: '2rem',
-      lineHeight: 1.2,
-      letterSpacing: '-0.02em'
-    },
-    h6: {
-      fontWeight: 600,
-      fontSize: '1.125rem',
-      lineHeight: 1.3
-    },
-    subtitle1: {
-      fontWeight: 500,
-      fontSize: '1rem',
-      lineHeight: 1.4
-    },
-    body1: {
-      fontSize: '0.875rem',
-      lineHeight: 1.5
-    },
-    body2: {
-      fontSize: '0.75rem',
-      lineHeight: 1.4
-    }
-  },
-  components: {
-    MuiDrawer: {
-      styleOverrides: {
-        paper: {
-          borderRight: 'none',
-          boxShadow: '0 4px 12px rgba(0,0,0,0.1)'
-        }
-      }
-    },
-    MuiListItemButton: {
-      styleOverrides: {
-        root: {
-          borderRadius: '8px',
-          margin: '2px 8px',
-          '&.Mui-selected': {
-            borderLeft: '4px solid #FF6F00',
-            backgroundColor: 'rgba(13, 71, 161, 0.08)',
-            '&:hover': {
-              backgroundColor: 'rgba(13, 71, 161, 0.12)',
-            }
-          },
-          '&:hover': {
-            backgroundColor: 'rgba(13, 71, 161, 0.04)',
-          }
-        }
-      }
-    },
-    MuiAppBar: {
-      styleOverrides: {
-        root: {
-          boxShadow: '0 2px 8px rgba(0,0,0,0.1)'
-        }
-      }
-    }
-  }
+const capabilities = [
+  { id: 'requirements', label: 'Requirement analysis', short: 'Scope, gaps & risk', icon: <ContentPasteSearchOutlined /> },
+  { id: 'test-cases', label: 'Test case generation', short: 'Positive to edge cases', icon: <ChecklistOutlined /> },
+  { id: 'test-data', label: 'Test data generation', short: 'Valid, masked & boundary', icon: <TableChartOutlined /> },
+  { id: 'api-bdd', label: 'API & BDD mapping', short: 'Contracts & Gherkin', icon: <IntegrationInstructionsOutlined /> },
+  { id: 'defects', label: 'Defect analysis', short: 'Root cause & impact', icon: <BugReportOutlined /> },
+  { id: 'test-plan', label: 'Test plan creation', short: 'Strategy & execution', icon: <AssessmentOutlined /> },
+];
+const evidence = [
+  { title: 'User stories', detail: '48 indexed records', tone: 'teal' },
+  { title: 'Test repository', detail: '1,240 test cases', tone: 'blue' },
+  { title: 'API specifications', detail: '12 OpenAPI contracts', tone: 'orange' },
+  { title: 'Defect history', detail: '326 resolved issues', tone: 'red' },
+];
+const theme = createTheme({
+  palette: { mode: 'light', primary: { main: '#0f5b61', dark: '#093c41', light: '#d9f0ec' }, secondary: { main: '#e8793e' }, background: { default: '#f4f7f5', paper: '#ffffff' }, text: { primary: '#153437', secondary: '#607476' } },
+  typography: { fontFamily: '"DM Sans", "Trebuchet MS", sans-serif', h1: { fontFamily: '"Fraunces", Georgia, serif' }, h2: { fontFamily: '"Fraunces", Georgia, serif' } }, shape: { borderRadius: 8 },
 });
 
-const drawerWidth = 280;
-const collapsedDrawerWidth = 72;
-
-const menuItems = [
-  { 
-    id: 'convert', 
-    label: 'Convert to JSON', 
-    icon: <TransformIcon />, 
-    component: ConvertToJson,
-    description: 'Upload and convert Excel files'
-  },
-  { 
-    id: 'embeddings', 
-    label: 'Embeddings & Store', 
-    icon: <StorageIcon />, 
-    component: EmbeddingsStore,
-    description: 'Create and manage embeddings'
-  },
-  { 
-    id: 'preprocess', 
-    label: 'Query Preprocessing', 
-    icon: <PreprocessIcon />, 
-    component: QueryPreprocessing,
-    description: 'Transform & expand queries'
-  },
-  { 
-    id: 'query', 
-    label: 'Vector Search', 
-    icon: <SearchIcon />, 
-    component: QuerySearch,
-    description: 'Semantic vector search'
-  },
-  { 
-    id: 'bm25', 
-    label: 'BM25 Search', 
-    icon: <KeywordIcon />, 
-    component: BM25Search,
-    description: 'Keyword-based search'
-  },
-  { 
-    id: 'hybrid', 
-    label: 'Hybrid Search', 
-    icon: <HybridIcon />, 
-    component: HybridSearch,
-    description: 'Combined BM25 + Vector'
-  },
-  { 
-    id: 'rerank', 
-    label: 'Score Fusion', 
-    icon: <RerankIcon />, 
-    component: RerankingSearch,
-    description: 'BM25+Vector fusion reranking'
-  },
-  { 
-    id: 'summarize', 
-    label: 'Summarize & Dedup', 
-    icon: <SummarizeIcon />, 
-    component: SummarizationDedup,
-    description: 'AI summarization & deduplication'
-  },
-  { 
-    id: 'prompt-schema', 
-    label: 'Prompt & Schema', 
-    icon: <SchemaIcon />, 
-    component: PromptSchemaManager,
-    description: 'Configure prompt templates & JSON schemas'
-  },
-  { 
-    id: 'settings', 
-    label: 'Settings', 
-    icon: <SettingsIcon />, 
-    component: Settings,
-    description: 'Configure environment'
-  },
-];
-
-function App() {
-  const [selectedMenuItem, setSelectedMenuItem] = useState('convert');
+function AppContent() {
+  const { enqueueSnackbar } = useSnackbar();
+  const [selected, setSelected] = useState('test-cases');
   const [drawerOpen, setDrawerOpen] = useState(true);
-  const [darkMode, setDarkMode] = useState(() => {
-    const saved = localStorage.getItem('darkMode');
-    return saved ? JSON.parse(saved) : false;
-  });
-
-  const isMobile = useMediaQuery('(max-width:768px)');
-  const theme = createEnterpriseTheme(darkMode ? 'dark' : 'light');
-
-  useEffect(() => {
-    localStorage.setItem('darkMode', JSON.stringify(darkMode));
-  }, [darkMode]);
-
-  useEffect(() => {
-    if (isMobile) {
-      setDrawerOpen(false);
-    } else {
-      setDrawerOpen(true);
-    }
-  }, [isMobile]);
-
-  const handleDrawerToggle = () => {
-    setDrawerOpen(!drawerOpen);
+  const [prompt, setPrompt] = useState('Create a thorough regression suite for the checkout flow, including payment failures and guest users.');
+  const [source, setSource] = useState('Checkout / Payments');
+  const [isRunning, setIsRunning] = useState(false);
+  const [result, setResult] = useState(null);
+  const capability = capabilities.find((item) => item.id === selected);
+  const runWorkflow = async () => {
+    if (!prompt.trim()) { enqueueSnackbar('Add a QA objective before running the workflow.', { variant: 'warning' }); return; }
+    setIsRunning(true); setResult(null);
+    try {
+      const response = await fetch('/api/qa/orchestrate', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ capability: selected, prompt, source }) });
+      if (!response.ok) throw new Error('QA orchestration endpoint unavailable');
+      setResult(await response.json());
+    } catch (error) {
+      setResult({ mode: 'preview', plan: ['Classify request', 'Retrieve application context', 'Generate QA artifact', 'Run guardrails'], retrieval: { query: prompt, sources: ['User stories', 'Historical test cases', 'QA standards'], matches: 12 }, validation: [{ label: 'Prompt completeness', status: 'Passed' }, { label: 'Context relevance', status: 'Passed' }, { label: 'Sensitive data scan', status: 'Passed' }], output: { title: `${capability.label} preview`, summary: `A grounded ${capability.label.toLowerCase()} workflow is ready for ${source}.`, items: ['Scope is identified from the request', 'Relevant application evidence is attached', 'Output is ready for review and export'] } });
+      enqueueSnackbar('Preview generated. Connect the API to run live retrieval.', { variant: 'info' });
+    } finally { setIsRunning(false); }
   };
-
-  const handleThemeToggle = () => {
-    setDarkMode(!darkMode);
-  };
-
-  const getCurrentComponent = () => {
-    const menuItem = menuItems.find(item => item.id === selectedMenuItem);
-    const Component = menuItem?.component;
-    return Component ? <Component /> : <div>Select a menu item</div>;
-  };
-
-  const getCurrentMenuItem = () => {
-    return menuItems.find(item => item.id === selectedMenuItem);
-  };
-
-  const actualDrawerWidth = drawerOpen ? drawerWidth : collapsedDrawerWidth;
-
-  return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <SnackbarProvider 
-        maxSnack={3}
-        anchorOrigin={{
-          vertical: 'bottom',
-          horizontal: 'right',
-        }}
-        dense
-        preventDuplicate
-      >
-        <Box sx={{ display: 'flex' }}>
-          {/* App Bar */}
-          <AppBar
-            position="fixed"
-            sx={{
-              width: { sm: `calc(100% - ${actualDrawerWidth}px)` },
-              ml: { sm: `${actualDrawerWidth}px` },
-              transition: theme.transitions.create(['width', 'margin'], {
-                easing: theme.transitions.easing.sharp,
-                duration: theme.transitions.duration.leavingScreen,
-              }),
-            }}
-          >
-            <Toolbar>
-              <IconButton
-                color="inherit"
-                edge="start"
-                onClick={handleDrawerToggle}
-                sx={{ mr: 2 }}
-              >
-                {drawerOpen ? <ChevronLeftIcon /> : <MenuIcon />}
-              </IconButton>
-              
-              <DashboardIcon sx={{ mr: 2 }} />
-              <Typography variant="h6" noWrap component="div" sx={{ flexGrow: 1 }}>
-                RAG Pipeline
-              </Typography>
-
-              <FormControlLabel
-                control={
-                  <Switch
-                    checked={darkMode}
-                    onChange={handleThemeToggle}
-                    icon={<LightModeIcon />}
-                    checkedIcon={<DarkModeIcon />}
-                  />
-                }
-                label=""
-                sx={{ mr: 1 }}
-              />
-            </Toolbar>
-            
-            {/* Secondary Toolbar for Breadcrumbs */}
-            <Toolbar variant="dense" sx={{ bgcolor: 'primary.dark', minHeight: '48px !important' }}>
-              <Breadcrumbs
-                separator={<NavigateNextIcon fontSize="small" />}
-                sx={{ color: 'primary.contrastText' }}
-              >
-                <Link
-                  component="button"
-                  variant="body2"
-                  sx={{ 
-                    color: 'inherit', 
-                    textDecoration: 'none',
-                    '&:hover': { textDecoration: 'underline' }
-                  }}
-                  onClick={() => setSelectedMenuItem('convert')}
-                >
-                  Home
-                </Link>
-                <Typography variant="body2" sx={{ color: 'primary.contrastText' }}>
-                  {getCurrentMenuItem()?.label}
-                </Typography>
-              </Breadcrumbs>
-              
-              <Box sx={{ flexGrow: 1 }} />
-              
-              <Typography variant="caption" sx={{ color: 'primary.contrastText', opacity: 0.8 }}>
-                {getCurrentMenuItem()?.description}
-              </Typography>
-            </Toolbar>
-          </AppBar>
-
-          {/* Sidebar */}
-          <Drawer
-            variant={isMobile ? 'temporary' : 'permanent'}
-            open={isMobile ? drawerOpen : true}
-            onClose={handleDrawerToggle}
-            sx={{
-              width: actualDrawerWidth,
-              flexShrink: 0,
-              '& .MuiDrawer-paper': {
-                width: actualDrawerWidth,
-                boxSizing: 'border-box',
-                transition: theme.transitions.create('width', {
-                  easing: theme.transitions.easing.sharp,
-                  duration: theme.transitions.duration.enteringScreen,
-                }),
-                overflowX: 'hidden',
-              },
-            }}
-          >
-            <Toolbar>
-              <Fade in={drawerOpen} timeout={300}>
-                <Box sx={{ display: 'flex', alignItems: 'center', width: '100%' }}>
-                  <Typography 
-                    variant="h6" 
-                    sx={{ 
-                      fontWeight: 'bold', 
-                      color: 'primary.main',
-                      fontSize: '1.1rem'
-                    }}
-                  >
-                    Navigation
-                  </Typography>
-                </Box>
-              </Fade>
-              {!drawerOpen && (
-                <Box sx={{ display: 'flex', justifyContent: 'center', width: '100%' }}>
-                  <DashboardIcon color="primary" />
-                </Box>
-              )}
-            </Toolbar>
-            
-            <Divider />
-            
-            <List sx={{ pt: 2 }}>
-              {menuItems.map((item) => (
-                <ListItem key={item.id} disablePadding>
-                  <Tooltip 
-                    title={drawerOpen ? '' : item.label} 
-                    placement="right"
-                    arrow
-                  >
-                    <ListItemButton
-                      selected={selectedMenuItem === item.id}
-                      onClick={() => setSelectedMenuItem(item.id)}
-                      sx={{
-                        minHeight: 48,
-                        justifyContent: drawerOpen ? 'initial' : 'center',
-                        px: 2.5,
-                      }}
-                    >
-                      <ListItemIcon
-                        sx={{
-                          minWidth: 0,
-                          mr: drawerOpen ? 3 : 'auto',
-                          justifyContent: 'center',
-                          color: selectedMenuItem === item.id ? 'primary.main' : 'inherit'
-                        }}
-                      >
-                        {item.icon}
-                      </ListItemIcon>
-                      
-                      <Collapse in={drawerOpen} orientation="horizontal" timeout={300}>
-                        <ListItemText
-                          primary={item.label}
-                          secondary={item.description}
-                          primaryTypographyProps={{
-                            fontSize: '0.875rem',
-                            fontWeight: selectedMenuItem === item.id ? 600 : 400,
-                          }}
-                          secondaryTypographyProps={{
-                            fontSize: '0.75rem',
-                            color: 'text.secondary'
-                          }}
-                        />
-                      </Collapse>
-                    </ListItemButton>
-                  </Tooltip>
-                </ListItem>
-              ))}
-            </List>
-            
-            <Divider sx={{ mt: 'auto' }} />
-            
-            <Box sx={{ p: 2 }}>
-              <Collapse in={drawerOpen} timeout={300}>
-                <Typography variant="caption" color="text.secondary" sx={{ fontSize: '0.7rem' }}>
-                  RAG Demo v1.2
-                </Typography>
-                <br />
-                <Typography variant="caption" color="text.secondary" sx={{ fontSize: '0.7rem' }}>
-                  Enterprise Edition
-                </Typography>
-              </Collapse>
-            </Box>
-          </Drawer>
-
-          {/* Main Content */}
-          <Box
-            component="main"
-            sx={{
-              flexGrow: 1,
-              bgcolor: 'background.default',
-              p: { xs: 2, sm: 3 },
-              minHeight: '100vh',
-              transition: theme.transitions.create(['margin', 'width'], {
-                easing: theme.transitions.easing.sharp,
-                duration: theme.transitions.duration.leavingScreen,
-              }),
-            }}
-          >
-            <Toolbar />
-            <Toolbar variant="dense" /> {/* Space for secondary toolbar */}
-            
-            <Container maxWidth={false} sx={{ mt: 2, px: 4 }}>
-              <Fade in={true} timeout={500}>
-                <Box>
-                  {getCurrentComponent()}
-                </Box>
-              </Fade>
-            </Container>
-          </Box>
-        </Box>
-      </SnackbarProvider>
-    </ThemeProvider>
-  );
+  return <Box className="app-shell">
+    <Drawer className="side-drawer" variant="permanent" open={drawerOpen} sx={{ '& .MuiDrawer-paper': { width: drawerOpen ? 248 : 72 } }}>
+      <Box className="brand-lockup"><Box className="brand-mark"><HubOutlined /></Box>{drawerOpen && <Box><Typography className="brand-name">QA Agent</Typography><Typography className="brand-caption">Created by Gopi Rajendran</Typography></Box>}</Box><Divider />
+      {drawerOpen && <Typography className="nav-label">CAPABILITIES</Typography>}
+      <List className="capability-list">{capabilities.map((item) => <ListItemButton key={item.id} selected={selected === item.id} onClick={() => { setSelected(item.id); setResult(null); }}><ListItemIcon>{item.icon}</ListItemIcon>{drawerOpen && <ListItemText primary={item.label} secondary={item.short} />}</ListItemButton>)}</List>
+      <Box className="drawer-bottom"><ListItemButton><ListItemIcon><StorageOutlined /></ListItemIcon>{drawerOpen && <ListItemText primary="Knowledge base" secondary="Connected" />}</ListItemButton><ListItemButton><ListItemIcon><SettingsOutlined /></ListItemIcon>{drawerOpen && <ListItemText primary="Workspace settings" />}</ListItemButton>{drawerOpen && <Box className="system-status"><span className="status-dot" />RAG services operational</Box>}</Box>
+    </Drawer>
+    <Box component="main" className="main-area">
+      <header className="topbar"><Tooltip title={drawerOpen ? 'Collapse navigation' : 'Expand navigation'}><IconButton onClick={() => setDrawerOpen(!drawerOpen)}>{drawerOpen ? <ChevronLeft /> : <Menu />}</IconButton></Tooltip><Box className="breadcrumbs"><Typography>Workspace</Typography><span>/</span><Typography className="crumb-active">{capability.label}</Typography></Box><Box className="topbar-actions"><Chip icon={<ShieldOutlined />} label="Guardrails on" className="guardrail-chip" /><Box className="avatar">SK</Box></Box></header>
+      <Box className="page-content"><Box className="eyebrow"><PsychologyOutlined /> AGENTIC QA WORKFLOW</Box><Box className="page-heading"><Box><Typography variant="h1">What are we testing today?</Typography><Typography className="lede">Turn application knowledge into review-ready QA artifacts, grounded in your team's evidence.</Typography></Box><Chip label="Workspace: Checkout" className="workspace-chip" /></Box>
+        <Box className="workflow-strip">{['Request', 'Orchestrate', 'Retrieve', 'Reason', 'Validate', 'Export'].map((step, index) => <React.Fragment key={step}><Box className={`workflow-step ${index === 0 ? 'active' : ''}`}><span>{String(index + 1).padStart(2, '0')}</span>{step}</Box>{index < 5 && <span className="workflow-arrow">→</span>}</React.Fragment>)}</Box>
+        <Box className="workspace-grid"><Paper className="request-panel"><Box className="panel-heading"><Box><Typography className="section-kicker">01 / DEFINE REQUEST</Typography><Typography variant="h2">{capability.label}</Typography></Box><ScienceOutlined className="heading-icon" /></Box><Typography className="field-label">QA objective</Typography><textarea value={prompt} onChange={(event) => setPrompt(event.target.value)} className="objective-input" rows={5} placeholder="Describe what you need to test..." /><Typography className="field-label">Application area</Typography><Box className="source-selector"><DescriptionOutlined /><input value={source} onChange={(event) => setSource(event.target.value)} /><span>⌄</span></Box><Box className="attachment-row"><UploadFileOutlined /><Typography><strong>Attach context</strong> <span>requirements, logs, API specs</span></Typography><Chip label="Optional" size="small" /></Box><Button className="run-button" variant="contained" onClick={runWorkflow} disabled={isRunning} endIcon={<span>→</span>}>{isRunning ? 'Running agents...' : 'Run QA workflow'}</Button>{isRunning && <LinearProgress className="progress-line" />}</Paper>
+          <Box className="right-column"><Paper className="evidence-panel"><Box className="panel-heading compact"><Box><Typography className="section-kicker">02 / RAG KNOWLEDGE LAYER</Typography><Typography variant="h2">Evidence available</Typography></Box><StorageOutlined className="heading-icon" /></Box><Typography className="panel-description">The orchestrator will ground this request in trusted application context.</Typography><Box className="evidence-grid">{evidence.map((item) => <Box key={item.title} className={`evidence-item ${item.tone}`}><Box className="evidence-icon"><DescriptionOutlined /></Box><Box><Typography className="evidence-title">{item.title}</Typography><Typography className="evidence-detail">{item.detail}</Typography></Box><span className="evidence-check">✓</span></Box>)}</Box></Paper><Paper className="orchestrator-panel"><Box className="panel-heading compact"><Box><Typography className="section-kicker">03 / ORCHESTRATOR</Typography><Typography variant="h2">Agent coordination</Typography></Box><HubOutlined className="heading-icon" /></Box><Box className="agent-flow"><Box className="agent-node user-node"><span>YOU</span><Typography>QA request</Typography></Box><span className="flow-line" /><Box className="agent-node orchestrator-node"><span>CORE</span><Typography>Orchestrator</Typography></Box><span className="flow-line" /><Box className="agent-agents">{['Retrieve', 'Reason', 'Guardrail'].map((agent) => <Chip key={agent} label={agent} size="small" />)}</Box></Box></Paper></Box></Box>
+        {result && <Paper className="result-panel"><Box className="result-header"><Box><Typography className="section-kicker">04 / GENERATED QA OUTPUT</Typography><Typography variant="h2">{result.output.title}</Typography></Box><Box className="result-actions"><Chip label={result.mode === 'preview' ? 'Preview' : 'Validated'} className="validated-chip" /><Button startIcon={<DownloadOutlined />} variant="outlined" size="small">Export</Button></Box></Box><Box className="result-grid"><Box><Typography className="subheading">Agent plan</Typography>{result.plan.map((step, index) => <Box className="plan-row" key={step}><span>{index + 1}</span>{step}<strong>✓</strong></Box>)}</Box><Box><Typography className="subheading">Retrieved context <Chip label={`${result.retrieval.matches} matches`} size="small" /></Typography><Typography className="result-summary">{result.output.summary}</Typography><Stack direction="row" spacing={1} flexWrap="wrap" useFlexGap>{result.retrieval.sources.map((item) => <Chip key={item} label={item} size="small" variant="outlined" />)}</Stack></Box><Box><Typography className="subheading">Validation checks</Typography>{result.validation.map((check) => <Box className="validation-row" key={check.label}><ShieldOutlined />{check.label}<span>{check.status}</span></Box>)}</Box></Box><Divider /><Box className="output-items">{result.output.items.map((item) => <Box key={item}><span>+</span>{item}</Box>)}</Box></Paper>}
+      </Box><footer><span>Created by Gopi Rajendran</span> Enterprise QA intelligence <span className="footer-right">Last indexed 8 min ago · RAG v1.4</span></footer>
+    </Box>
+  </Box>;
 }
-
+function App() { return <ThemeProvider theme={theme}><CssBaseline /><SnackbarProvider maxSnack={3}><AppContent /></SnackbarProvider></ThemeProvider>; }
 export default App;
