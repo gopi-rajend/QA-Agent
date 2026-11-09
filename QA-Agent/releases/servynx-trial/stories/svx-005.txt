@@ -1,0 +1,20 @@
+User Story: SVX-005 — Select service category and subcategory
+
+Summary:
+As a seeker, I want to search and pick a category and subcategory (e.g. IT & Digital Services > Software Testing / QA) so that the matching requirement form loads.
+
+Epic:
+Post Requirement
+
+Acceptance Criteria:
+
+Given the category search, when the user types a term (e.g. 'website'), then matching subcategories are listed with their parent group.
+
+Given a subcategory is chosen, then its versioned form loads (e.g. 'Software Testing / QA - Standard v1').
+
+Given a term with no match, then an empty-result message is shown.
+
+Priority: P1
+Risk: High
+Status: To Do
+Basis: Observed

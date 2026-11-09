@@ -1,0 +1,18 @@
+User Story: SVX-021 — Delete account with typed confirmation
+
+Summary:
+As a user, I want to permanently delete my account with a typed confirmation so that my data is anonymised.
+
+Epic:
+Settings & Privacy
+
+Acceptance Criteria:
+
+'Delete My Account' stays disabled until the exact text DELETE MY ACCOUNT is typed.
+
+After deletion, the user is signed out, cannot sign in again, and personal data is anonymised.
+
+Priority: P1
+Risk: Critical
+Status: To Do
+Basis: Observed

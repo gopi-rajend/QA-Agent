@@ -1,0 +1,22 @@
+User Story: SVX-017 — Buy credits
+
+Summary:
+As a seeker, I want to buy credits (quick select 25, 50, 100, 250, 500 or a custom amount) so that I can unlock provider contact details.
+
+Epic:
+Credits & Payments
+
+Acceptance Criteria:
+
+Quick select fills the amount; a custom amount accepts only positive whole numbers within limits.
+
+The price follows the user's pricing region and the Pricing Tiers table.
+
+After a successful payment, Available Credits and the header balance update and a Transaction History row is added.
+
+A failed or cancelled payment leaves the balance unchanged and shows a clear message.
+
+Priority: P1
+Risk: Critical
+Status: To Do
+Basis: Observed

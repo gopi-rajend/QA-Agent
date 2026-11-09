@@ -1,0 +1,20 @@
+User Story: SVX-022 — Switch between Seeker and Provider roles
+
+Summary:
+As a user, I want to switch between Seeker and Provider views so that one account can both post and respond to requirements.
+
+Epic:
+Role Switch & Provider Leads
+
+Acceptance Criteria:
+
+The header badge shows the current role, and Switch toggles the navigation to the other role's menu.
+
+The role persists across page reloads.
+
+Seeker-only pages are not reachable in Provider view and vice versa.
+
+Priority: P2
+Risk: High
+Status: To Do
+Basis: Inferred

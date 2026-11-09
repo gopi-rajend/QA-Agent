@@ -1,0 +1,22 @@
+User Story: SVX-007 — Complete and submit the requirement form
+
+Summary:
+As a seeker, I want to enter what I need, budget, timeline and notes, then submit so that providers can respond.
+
+Epic:
+Post Requirement
+
+Acceptance Criteria:
+
+'Describe what you need' is mandatory; submission is blocked with an inline message when empty.
+
+Timeline offers As soon as possible, Within a week, Within a month and Flexible.
+
+Budget accepts only valid non-negative amounts.
+
+On successful submit, the requirement appears on My Requirements as OPEN and dashboard counts update.
+
+Priority: P1
+Risk: Critical
+Status: To Do
+Basis: Observed

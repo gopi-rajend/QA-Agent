@@ -4,9 +4,15 @@ import dotenv from "dotenv";
 dotenv.config();
 
 // Initialize Groq client
-const groq = new Groq({
-  apiKey: process.env.GROQ_API_KEY
-});
+// Created lazily so the server can start (and run retrieval-only workflows)
+// when GROQ_API_KEY is not configured.
+let groqInstance = null;
+const groq = {
+  get chat() {
+    if (!groqInstance) groqInstance = new Groq({ apiKey: process.env.GROQ_API_KEY });
+    return groqInstance.chat;
+  }
+};
 
 // Default models
 const RERANK_MODEL = process.env.GROQ_RERANK_MODEL || "llama-3.2-3b-preview";

@@ -1,0 +1,20 @@
+User Story: SVX-009 — Control which contact details providers see after unlocking
+
+Summary:
+As a seeker, I want to choose whether Email, Phone and/or Chat are shared when a provider unlocks my lead.
+
+Epic:
+Settings & Privacy
+
+Acceptance Criteria:
+
+Only the checked channels are revealed to a provider after unlocking.
+
+With nothing checked, all channels are shared (as the form states).
+
+The choice is stored with the requirement and shown when it is viewed later.
+
+Priority: P1
+Risk: Critical
+Status: To Do
+Basis: Observed

@@ -1,0 +1,20 @@
+User Story: SVX-018 — Unlock provider contact details with credits
+
+Summary:
+As a seeker, I want to spend credits to unlock a provider's contact details.
+
+Epic:
+Credits & Payments
+
+Acceptance Criteria:
+
+Unlocking deducts the stated credits exactly once (no double charge on double click or refresh).
+
+With too few credits, the unlock is blocked and the user is offered Buy Credits.
+
+Only the channels permitted by the other party's privacy settings are revealed.
+
+Priority: P1
+Risk: Critical
+Status: To Do
+Basis: Inferred

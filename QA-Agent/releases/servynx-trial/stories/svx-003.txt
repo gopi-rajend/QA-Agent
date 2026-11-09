@@ -1,0 +1,18 @@
+User Story: SVX-003 — Recent requirements and empty state
+
+Summary:
+As a seeker, I want to see my recent requirements on the dashboard, with a clear call to action when I have none.
+
+Epic:
+Seeker Dashboard
+
+Acceptance Criteria:
+
+Given no requirements, then the 'No requirements yet' message and a 'Post your first requirement' link to /requirements/new are shown.
+
+Given requirements exist, then the most recent ones are listed and 'View all' opens /requirements.
+
+Priority: P3
+Risk: Low
+Status: To Do
+Basis: Observed

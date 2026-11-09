@@ -1,0 +1,22 @@
+User Story: SVX-019 — Edit profile, country and pricing region
+
+Summary:
+As a user, I want to set my full name, display name, country and pricing region so that postal validation and pricing are correct.
+
+Epic:
+Settings & Privacy
+
+Acceptance Criteria:
+
+Full name (max 100) and display name (max 60, shown publicly) are mandatory, with live counters.
+
+Selecting a country auto-sets the pricing region, which can be overridden.
+
+Save Profile persists the changes and shows a confirmation.
+
+Verified contact details on file are shown; the signed-in email should appear rather than 'No email on file'.
+
+Priority: P2
+Risk: Medium
+Status: To Do
+Basis: Observed

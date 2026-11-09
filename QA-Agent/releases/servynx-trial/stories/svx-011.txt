@@ -1,0 +1,18 @@
+User Story: SVX-011 — Voice intake
+
+Summary:
+As a seeker, I want to speak my requirement so that it is transcribed and used to pre-fill the form.
+
+Epic:
+AI Requirement Intake
+
+Acceptance Criteria:
+
+Microphone permission is requested; if denied, a helpful message points to Fill Form or Just Say.
+
+The transcript is shown and editable before the form is pre-filled.
+
+Priority: P3
+Risk: Medium
+Status: To Do
+Basis: Observed

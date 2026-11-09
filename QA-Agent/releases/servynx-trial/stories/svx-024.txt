@@ -1,0 +1,18 @@
+User Story: SVX-024 — In-app notifications
+
+Summary:
+As a user, I want notifications for invitations, provider interest and new chat messages.
+
+Epic:
+Notifications
+
+Acceptance Criteria:
+
+The bell shows an unread indicator for new events, and opening it lists them newest first.
+
+Clicking a notification opens the related page and marks it read.
+
+Priority: P3
+Risk: Low
+Status: To Do
+Basis: Observed

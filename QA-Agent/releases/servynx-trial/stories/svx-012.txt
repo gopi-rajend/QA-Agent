@@ -1,0 +1,20 @@
+User Story: SVX-012 — Track posted requirements
+
+Summary:
+As a seeker, I want a list of my requirements with their status so that I can follow up and unlock provider contacts.
+
+Epic:
+My Requirements
+
+Acceptance Criteria:
+
+Each requirement shows title, category, status and date.
+
+Refresh reloads the list without a full page reload.
+
+'Post new' opens /requirements/new; the empty state links to posting.
+
+Priority: P2
+Risk: Medium
+Status: To Do
+Basis: Observed
