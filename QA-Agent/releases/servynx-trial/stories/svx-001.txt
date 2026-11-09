@@ -1,0 +1,20 @@
+User Story: SVX-001 — Sign in and land on the seeker dashboard
+
+Summary:
+As a seeker, I want to sign in with my email so that I land on my dashboard with my account details shown in the header.
+
+Epic:
+Authentication & Account
+
+Acceptance Criteria:
+
+Given valid credentials, when the user signs in, then they are redirected to /dashboard and their email is shown in the header.
+
+Given invalid credentials, when the user signs in, then a clear error is shown and no session is created.
+
+Given a signed-out user, when they open /dashboard directly, then they are sent to sign in and returned to /dashboard afterwards.
+
+Priority: P1
+Risk: High
+Status: To Do
+Basis: Observed

@@ -1,0 +1,20 @@
+User Story: SVX-010 — Just Say free-text intake
+
+Summary:
+As a seeker, I want to describe my need in up to 1000 characters so that AI suggests a category and pre-fills the form.
+
+Epic:
+AI Requirement Intake
+
+Acceptance Criteria:
+
+The counter shows n/1000 and input stops at 1000 characters.
+
+Next suggests a category and pre-fills the form, which the user can still edit.
+
+Vague or off-topic text yields a request for more detail rather than a wrong category.
+
+Priority: P2
+Risk: Medium
+Status: To Do
+Basis: Observed

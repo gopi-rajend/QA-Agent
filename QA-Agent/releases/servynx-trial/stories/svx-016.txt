@@ -1,0 +1,20 @@
+User Story: SVX-016 — Chat with connected providers
+
+Summary:
+As a seeker, I want to message my connected providers so that we can agree scope and price.
+
+Epic:
+Connects & Chat
+
+Acceptance Criteria:
+
+Only connected providers can be messaged.
+
+Messages are delivered and shown in order with timestamps; Refresh fetches new messages.
+
+Contact details hidden by the privacy settings are not exposed through chat metadata.
+
+Priority: P2
+Risk: High
+Status: To Do
+Basis: Observed

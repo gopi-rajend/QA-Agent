@@ -1,0 +1,18 @@
+User Story: SVX-015 — View connected providers
+
+Summary:
+As a seeker, I want a list of providers I have connected with so that I can open a chat with any of them.
+
+Epic:
+Connects & Chat
+
+Acceptance Criteria:
+
+The list loads, and 'Loading…' is replaced by results or an empty state within a reasonable time.
+
+'All Chats' opens /chat.
+
+Priority: P3
+Risk: Medium
+Status: To Do
+Basis: Observed

@@ -1,0 +1,20 @@
+User Story: SVX-013 — Search providers by category, region and postal code
+
+Summary:
+As a seeker, I want to filter providers by category, region (Canada, US, India, Middle East, UK, EU) and postal code.
+
+Epic:
+Provider Discovery
+
+Acceptance Criteria:
+
+Filters can be combined, and results show only providers with completed work in that category and region.
+
+With no results, '0 providers found' and a hint to change filters are shown.
+
+A 'Searching…' state is shown during the query and replaced by results or the empty state.
+
+Priority: P2
+Risk: Medium
+Status: To Do
+Basis: Observed

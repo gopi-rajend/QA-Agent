@@ -1,0 +1,20 @@
+User Story: SVX-002 — Dashboard summary tiles
+
+Summary:
+As a seeker, I want summary tiles for Total Requirements, Active, Providers Interested and Invites Sent so that I can see my activity at a glance.
+
+Epic:
+Seeker Dashboard
+
+Acceptance Criteria:
+
+Given a new account, when the dashboard loads, then all four tiles show 0 (never a dash or blank once loading finishes).
+
+Given posted requirements, when the dashboard loads, then each tile matches the counts on My Requirements and Invitations Sent.
+
+While data is loading, tiles show a loading state rather than stale values.
+
+Priority: P2
+Risk: Medium
+Status: To Do
+Basis: Observed

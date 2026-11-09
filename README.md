@@ -28,6 +28,10 @@ QA request
   -> Structured QA output
 ```
 
+## Servynx trial
+
+QA Agent ships with a **Servynx Marketplace** workspace (24 stories, 55 test cases) for the TrustyBytes trial, and it's the default application in the portal. See [QA-Agent/SERVYNX_TRIAL.md](QA-Agent/SERVYNX_TRIAL.md) for what changed, how to run it, and the trial prompts.
+
 ## Architecture
 
 ### QA Agent portal

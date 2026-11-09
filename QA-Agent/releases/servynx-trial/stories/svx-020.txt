@@ -1,0 +1,18 @@
+User Story: SVX-020 — Change password
+
+Summary:
+As a user, I want to change my password from Settings so that I can keep my account secure.
+
+Epic:
+Settings & Privacy
+
+Acceptance Criteria:
+
+The current password is required; the new password must meet the strength rules and be confirmed.
+
+Other sessions are signed out after a change (or the user is offered this).
+
+Priority: P1
+Risk: High
+Status: To Do
+Basis: Observed

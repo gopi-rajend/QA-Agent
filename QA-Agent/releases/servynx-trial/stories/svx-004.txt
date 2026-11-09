@@ -1,0 +1,20 @@
+User Story: SVX-004 — Quick Post from the dashboard
+
+Summary:
+As a seeker, I want to describe my need in one sentence on the dashboard so that AI categorises it and pre-fills the requirement form.
+
+Epic:
+AI Requirement Intake
+
+Acceptance Criteria:
+
+Given text in Quick Post, when the user clicks Next or presses Ctrl+Enter, then they reach the requirement form with category and description pre-filled.
+
+Given an empty Quick Post, when the user clicks Next, then the action is blocked with a prompt to describe the need.
+
+'Fill Form Instead' opens /requirements/new with an empty form.
+
+Priority: P1
+Risk: High
+Status: To Do
+Basis: Observed

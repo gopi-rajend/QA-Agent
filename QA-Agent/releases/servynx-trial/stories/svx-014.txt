@@ -1,0 +1,20 @@
+User Story: SVX-014 — Invite providers and track invitations
+
+Summary:
+As a seeker, I want to invite providers to my requirement and track invitations as Pending, Accepted or Declined.
+
+Epic:
+Invitations
+
+Acceptance Criteria:
+
+The All, Pending, Accepted and Declined tabs show only matching invitations.
+
+A new invitation appears as Pending and increments the dashboard's Invites Sent.
+
+An empty tab shows an empty-state message rather than a blank area.
+
+Priority: P2
+Risk: Medium
+Status: To Do
+Basis: Observed

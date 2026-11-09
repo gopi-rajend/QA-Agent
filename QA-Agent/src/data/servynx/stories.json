@@ -1,0 +1,1010 @@
+[
+  {
+    "key": "SVX-001",
+    "summary": "Sign in and land on the seeker dashboard",
+    "description": "As a seeker, I want to sign in with my email so that I land on my dashboard with my account details shown in the header.",
+    "status": {
+      "name": "To Do",
+      "category": "To Do"
+    },
+    "priority": {
+      "name": "P1",
+      "id": "1"
+    },
+    "assignee": null,
+    "reporter": null,
+    "created": "2026-11-08T00:00:00.000Z",
+    "updated": "2026-11-08T00:00:00.000Z",
+    "components": [
+      "Login"
+    ],
+    "labels": [
+      "servynx",
+      "observed"
+    ],
+    "fixVersions": [
+      "servynx-trial-v1"
+    ],
+    "storyPoints": null,
+    "project": "Servynx",
+    "epic": "Authentication & Account",
+    "acceptanceCriteria": "Given valid credentials, when the user signs in, then they are redirected to /dashboard and their email is shown in the header.\nGiven invalid credentials, when the user signs in, then a clear error is shown and no session is created.\nGiven a signed-out user, when they open /dashboard directly, then they are sent to sign in and returned to /dashboard afterwards.",
+    "businessValue": "",
+    "risk": "High",
+    "dependencies": "",
+    "notes": "Observed during Servynx trial walkthrough 2026-11-08",
+    "sprint": null,
+    "team": null,
+    "issueLinks": [],
+    "url": "https://www.servynx.com",
+    "sourceType": "excel",
+    "importedAt": "2026-11-08T00:00:00.000Z",
+    "originalRowIndex": 1
+  },
+  {
+    "key": "SVX-002",
+    "summary": "Dashboard summary tiles",
+    "description": "As a seeker, I want summary tiles for Total Requirements, Active, Providers Interested and Invites Sent so that I can see my activity at a glance.",
+    "status": {
+      "name": "To Do",
+      "category": "To Do"
+    },
+    "priority": {
+      "name": "P2",
+      "id": "2"
+    },
+    "assignee": null,
+    "reporter": null,
+    "created": "2026-11-08T00:00:00.000Z",
+    "updated": "2026-11-08T00:00:00.000Z",
+    "components": [
+      "Dashboard"
+    ],
+    "labels": [
+      "servynx",
+      "observed"
+    ],
+    "fixVersions": [
+      "servynx-trial-v1"
+    ],
+    "storyPoints": null,
+    "project": "Servynx",
+    "epic": "Seeker Dashboard",
+    "acceptanceCriteria": "Given a new account, when the dashboard loads, then all four tiles show 0 (never a dash or blank once loading finishes).\nGiven posted requirements, when the dashboard loads, then each tile matches the counts on My Requirements and Invitations Sent.\nWhile data is loading, tiles show a loading state rather than stale values.",
+    "businessValue": "",
+    "risk": "Medium",
+    "dependencies": "",
+    "notes": "Observed during Servynx trial walkthrough 2026-11-08",
+    "sprint": null,
+    "team": null,
+    "issueLinks": [],
+    "url": "https://www.servynx.com",
+    "sourceType": "excel",
+    "importedAt": "2026-11-08T00:00:00.000Z",
+    "originalRowIndex": 2
+  },
+  {
+    "key": "SVX-003",
+    "summary": "Recent requirements and empty state",
+    "description": "As a seeker, I want to see my recent requirements on the dashboard, with a clear call to action when I have none.",
+    "status": {
+      "name": "To Do",
+      "category": "To Do"
+    },
+    "priority": {
+      "name": "P3",
+      "id": "3"
+    },
+    "assignee": null,
+    "reporter": null,
+    "created": "2026-11-08T00:00:00.000Z",
+    "updated": "2026-11-08T00:00:00.000Z",
+    "components": [
+      "Dashboard"
+    ],
+    "labels": [
+      "servynx",
+      "observed"
+    ],
+    "fixVersions": [
+      "servynx-trial-v1"
+    ],
+    "storyPoints": null,
+    "project": "Servynx",
+    "epic": "Seeker Dashboard",
+    "acceptanceCriteria": "Given no requirements, then the 'No requirements yet' message and a 'Post your first requirement' link to /requirements/new are shown.\nGiven requirements exist, then the most recent ones are listed and 'View all' opens /requirements.",
+    "businessValue": "",
+    "risk": "Low",
+    "dependencies": "",
+    "notes": "Observed during Servynx trial walkthrough 2026-11-08",
+    "sprint": null,
+    "team": null,
+    "issueLinks": [],
+    "url": "https://www.servynx.com",
+    "sourceType": "excel",
+    "importedAt": "2026-11-08T00:00:00.000Z",
+    "originalRowIndex": 3
+  },
+  {
+    "key": "SVX-004",
+    "summary": "Quick Post from the dashboard",
+    "description": "As a seeker, I want to describe my need in one sentence on the dashboard so that AI categorises it and pre-fills the requirement form.",
+    "status": {
+      "name": "To Do",
+      "category": "To Do"
+    },
+    "priority": {
+      "name": "P1",
+      "id": "1"
+    },
+    "assignee": null,
+    "reporter": null,
+    "created": "2026-11-08T00:00:00.000Z",
+    "updated": "2026-11-08T00:00:00.000Z",
+    "components": [
+      "Quick Post"
+    ],
+    "labels": [
+      "servynx",
+      "observed"
+    ],
+    "fixVersions": [
+      "servynx-trial-v1"
+    ],
+    "storyPoints": null,
+    "project": "Servynx",
+    "epic": "AI Requirement Intake",
+    "acceptanceCriteria": "Given text in Quick Post, when the user clicks Next or presses Ctrl+Enter, then they reach the requirement form with category and description pre-filled.\nGiven an empty Quick Post, when the user clicks Next, then the action is blocked with a prompt to describe the need.\n'Fill Form Instead' opens /requirements/new with an empty form.",
+    "businessValue": "",
+    "risk": "High",
+    "dependencies": "",
+    "notes": "Observed during Servynx trial walkthrough 2026-11-08",
+    "sprint": null,
+    "team": null,
+    "issueLinks": [],
+    "url": "https://www.servynx.com",
+    "sourceType": "excel",
+    "importedAt": "2026-11-08T00:00:00.000Z",
+    "originalRowIndex": 4
+  },
+  {
+    "key": "SVX-005",
+    "summary": "Select service category and subcategory",
+    "description": "As a seeker, I want to search and pick a category and subcategory (e.g. IT & Digital Services > Software Testing / QA) so that the matching requirement form loads.",
+    "status": {
+      "name": "To Do",
+      "category": "To Do"
+    },
+    "priority": {
+      "name": "P1",
+      "id": "1"
+    },
+    "assignee": null,
+    "reporter": null,
+    "created": "2026-11-08T00:00:00.000Z",
+    "updated": "2026-11-08T00:00:00.000Z",
+    "components": [
+      "Post Requirement"
+    ],
+    "labels": [
+      "servynx",
+      "observed"
+    ],
+    "fixVersions": [
+      "servynx-trial-v1"
+    ],
+    "storyPoints": null,
+    "project": "Servynx",
+    "epic": "Post Requirement",
+    "acceptanceCriteria": "Given the category search, when the user types a term (e.g. 'website'), then matching subcategories are listed with their parent group.\nGiven a subcategory is chosen, then its versioned form loads (e.g. 'Software Testing / QA - Standard v1').\nGiven a term with no match, then an empty-result message is shown.",
+    "businessValue": "",
+    "risk": "High",
+    "dependencies": "",
+    "notes": "Observed during Servynx trial walkthrough 2026-11-08",
+    "sprint": null,
+    "team": null,
+    "issueLinks": [],
+    "url": "https://www.servynx.com",
+    "sourceType": "excel",
+    "importedAt": "2026-11-08T00:00:00.000Z",
+    "originalRowIndex": 5
+  },
+  {
+    "key": "SVX-006",
+    "summary": "Validate service location postal code by region",
+    "description": "As a seeker, I want my postal code validated against my region so that providers in the right area see my requirement.",
+    "status": {
+      "name": "To Do",
+      "category": "To Do"
+    },
+    "priority": {
+      "name": "P1",
+      "id": "1"
+    },
+    "assignee": null,
+    "reporter": null,
+    "created": "2026-11-08T00:00:00.000Z",
+    "updated": "2026-11-08T00:00:00.000Z",
+    "components": [
+      "Post Requirement"
+    ],
+    "labels": [
+      "servynx",
+      "observed"
+    ],
+    "fixVersions": [
+      "servynx-trial-v1"
+    ],
+    "storyPoints": null,
+    "project": "Servynx",
+    "epic": "Post Requirement",
+    "acceptanceCriteria": "Given valid codes for supported regions (e.g. 600001 India, M5H 2N2 Canada, 10001 US), then the code is accepted.\nGiven an invalid or mismatched code, then an inline error is shown and submission is blocked.\nLeading/trailing spaces and lowercase Canadian codes are normalised.",
+    "businessValue": "",
+    "risk": "High",
+    "dependencies": "",
+    "notes": "Observed during Servynx trial walkthrough 2026-11-08",
+    "sprint": null,
+    "team": null,
+    "issueLinks": [],
+    "url": "https://www.servynx.com",
+    "sourceType": "excel",
+    "importedAt": "2026-11-08T00:00:00.000Z",
+    "originalRowIndex": 6
+  },
+  {
+    "key": "SVX-007",
+    "summary": "Complete and submit the requirement form",
+    "description": "As a seeker, I want to enter what I need, budget, timeline and notes, then submit so that providers can respond.",
+    "status": {
+      "name": "To Do",
+      "category": "To Do"
+    },
+    "priority": {
+      "name": "P1",
+      "id": "1"
+    },
+    "assignee": null,
+    "reporter": null,
+    "created": "2026-11-08T00:00:00.000Z",
+    "updated": "2026-11-08T00:00:00.000Z",
+    "components": [
+      "Post Requirement"
+    ],
+    "labels": [
+      "servynx",
+      "observed"
+    ],
+    "fixVersions": [
+      "servynx-trial-v1"
+    ],
+    "storyPoints": null,
+    "project": "Servynx",
+    "epic": "Post Requirement",
+    "acceptanceCriteria": "'Describe what you need' is mandatory; submission is blocked with an inline message when empty.\nTimeline offers As soon as possible, Within a week, Within a month and Flexible.\nBudget accepts only valid non-negative amounts.\nOn successful submit, the requirement appears on My Requirements as OPEN and dashboard counts update.",
+    "businessValue": "",
+    "risk": "Critical",
+    "dependencies": "",
+    "notes": "Observed during Servynx trial walkthrough 2026-11-08",
+    "sprint": null,
+    "team": null,
+    "issueLinks": [],
+    "url": "https://www.servynx.com",
+    "sourceType": "excel",
+    "importedAt": "2026-11-08T00:00:00.000Z",
+    "originalRowIndex": 7
+  },
+  {
+    "key": "SVX-008",
+    "summary": "Attach supporting files to a requirement",
+    "description": "As a seeker, I want to attach up to 5 files of 10MB each so that providers understand my need.",
+    "status": {
+      "name": "To Do",
+      "category": "To Do"
+    },
+    "priority": {
+      "name": "P2",
+      "id": "2"
+    },
+    "assignee": null,
+    "reporter": null,
+    "created": "2026-11-08T00:00:00.000Z",
+    "updated": "2026-11-08T00:00:00.000Z",
+    "components": [
+      "Attachments"
+    ],
+    "labels": [
+      "servynx",
+      "observed"
+    ],
+    "fixVersions": [
+      "servynx-trial-v1"
+    ],
+    "storyPoints": null,
+    "project": "Servynx",
+    "epic": "Post Requirement",
+    "acceptanceCriteria": "Up to 5 files of up to 10MB each are accepted.\nA 6th file, or a file over 10MB, is rejected with a clear message and the others are kept.\nExecutable or unsupported file types are rejected.",
+    "businessValue": "",
+    "risk": "High",
+    "dependencies": "",
+    "notes": "Observed during Servynx trial walkthrough 2026-11-08",
+    "sprint": null,
+    "team": null,
+    "issueLinks": [],
+    "url": "https://www.servynx.com",
+    "sourceType": "excel",
+    "importedAt": "2026-11-08T00:00:00.000Z",
+    "originalRowIndex": 8
+  },
+  {
+    "key": "SVX-009",
+    "summary": "Control which contact details providers see after unlocking",
+    "description": "As a seeker, I want to choose whether Email, Phone and/or Chat are shared when a provider unlocks my lead.",
+    "status": {
+      "name": "To Do",
+      "category": "To Do"
+    },
+    "priority": {
+      "name": "P1",
+      "id": "1"
+    },
+    "assignee": null,
+    "reporter": null,
+    "created": "2026-11-08T00:00:00.000Z",
+    "updated": "2026-11-08T00:00:00.000Z",
+    "components": [
+      "Post Requirement"
+    ],
+    "labels": [
+      "servynx",
+      "observed"
+    ],
+    "fixVersions": [
+      "servynx-trial-v1"
+    ],
+    "storyPoints": null,
+    "project": "Servynx",
+    "epic": "Settings & Privacy",
+    "acceptanceCriteria": "Only the checked channels are revealed to a provider after unlocking.\nWith nothing checked, all channels are shared (as the form states).\nThe choice is stored with the requirement and shown when it is viewed later.",
+    "businessValue": "",
+    "risk": "Critical",
+    "dependencies": "",
+    "notes": "Observed during Servynx trial walkthrough 2026-11-08",
+    "sprint": null,
+    "team": null,
+    "issueLinks": [],
+    "url": "https://www.servynx.com",
+    "sourceType": "excel",
+    "importedAt": "2026-11-08T00:00:00.000Z",
+    "originalRowIndex": 9
+  },
+  {
+    "key": "SVX-010",
+    "summary": "Just Say free-text intake",
+    "description": "As a seeker, I want to describe my need in up to 1000 characters so that AI suggests a category and pre-fills the form.",
+    "status": {
+      "name": "To Do",
+      "category": "To Do"
+    },
+    "priority": {
+      "name": "P2",
+      "id": "2"
+    },
+    "assignee": null,
+    "reporter": null,
+    "created": "2026-11-08T00:00:00.000Z",
+    "updated": "2026-11-08T00:00:00.000Z",
+    "components": [
+      "Just Say"
+    ],
+    "labels": [
+      "servynx",
+      "observed"
+    ],
+    "fixVersions": [
+      "servynx-trial-v1"
+    ],
+    "storyPoints": null,
+    "project": "Servynx",
+    "epic": "AI Requirement Intake",
+    "acceptanceCriteria": "The counter shows n/1000 and input stops at 1000 characters.\nNext suggests a category and pre-fills the form, which the user can still edit.\nVague or off-topic text yields a request for more detail rather than a wrong category.",
+    "businessValue": "",
+    "risk": "Medium",
+    "dependencies": "",
+    "notes": "Observed during Servynx trial walkthrough 2026-11-08",
+    "sprint": null,
+    "team": null,
+    "issueLinks": [],
+    "url": "https://www.servynx.com",
+    "sourceType": "excel",
+    "importedAt": "2026-11-08T00:00:00.000Z",
+    "originalRowIndex": 10
+  },
+  {
+    "key": "SVX-011",
+    "summary": "Voice intake",
+    "description": "As a seeker, I want to speak my requirement so that it is transcribed and used to pre-fill the form.",
+    "status": {
+      "name": "To Do",
+      "category": "To Do"
+    },
+    "priority": {
+      "name": "P3",
+      "id": "3"
+    },
+    "assignee": null,
+    "reporter": null,
+    "created": "2026-11-08T00:00:00.000Z",
+    "updated": "2026-11-08T00:00:00.000Z",
+    "components": [
+      "Voice"
+    ],
+    "labels": [
+      "servynx",
+      "observed"
+    ],
+    "fixVersions": [
+      "servynx-trial-v1"
+    ],
+    "storyPoints": null,
+    "project": "Servynx",
+    "epic": "AI Requirement Intake",
+    "acceptanceCriteria": "Microphone permission is requested; if denied, a helpful message points to Fill Form or Just Say.\nThe transcript is shown and editable before the form is pre-filled.",
+    "businessValue": "",
+    "risk": "Medium",
+    "dependencies": "",
+    "notes": "Observed during Servynx trial walkthrough 2026-11-08",
+    "sprint": null,
+    "team": null,
+    "issueLinks": [],
+    "url": "https://www.servynx.com",
+    "sourceType": "excel",
+    "importedAt": "2026-11-08T00:00:00.000Z",
+    "originalRowIndex": 11
+  },
+  {
+    "key": "SVX-012",
+    "summary": "Track posted requirements",
+    "description": "As a seeker, I want a list of my requirements with their status so that I can follow up and unlock provider contacts.",
+    "status": {
+      "name": "To Do",
+      "category": "To Do"
+    },
+    "priority": {
+      "name": "P2",
+      "id": "2"
+    },
+    "assignee": null,
+    "reporter": null,
+    "created": "2026-11-08T00:00:00.000Z",
+    "updated": "2026-11-08T00:00:00.000Z",
+    "components": [
+      "My Requirements"
+    ],
+    "labels": [
+      "servynx",
+      "observed"
+    ],
+    "fixVersions": [
+      "servynx-trial-v1"
+    ],
+    "storyPoints": null,
+    "project": "Servynx",
+    "epic": "My Requirements",
+    "acceptanceCriteria": "Each requirement shows title, category, status and date.\nRefresh reloads the list without a full page reload.\n'Post new' opens /requirements/new; the empty state links to posting.",
+    "businessValue": "",
+    "risk": "Medium",
+    "dependencies": "",
+    "notes": "Observed during Servynx trial walkthrough 2026-11-08",
+    "sprint": null,
+    "team": null,
+    "issueLinks": [],
+    "url": "https://www.servynx.com",
+    "sourceType": "excel",
+    "importedAt": "2026-11-08T00:00:00.000Z",
+    "originalRowIndex": 12
+  },
+  {
+    "key": "SVX-013",
+    "summary": "Search providers by category, region and postal code",
+    "description": "As a seeker, I want to filter providers by category, region (Canada, US, India, Middle East, UK, EU) and postal code.",
+    "status": {
+      "name": "To Do",
+      "category": "To Do"
+    },
+    "priority": {
+      "name": "P2",
+      "id": "2"
+    },
+    "assignee": null,
+    "reporter": null,
+    "created": "2026-11-08T00:00:00.000Z",
+    "updated": "2026-11-08T00:00:00.000Z",
+    "components": [
+      "Find Providers"
+    ],
+    "labels": [
+      "servynx",
+      "observed"
+    ],
+    "fixVersions": [
+      "servynx-trial-v1"
+    ],
+    "storyPoints": null,
+    "project": "Servynx",
+    "epic": "Provider Discovery",
+    "acceptanceCriteria": "Filters can be combined, and results show only providers with completed work in that category and region.\nWith no results, '0 providers found' and a hint to change filters are shown.\nA 'Searching…' state is shown during the query and replaced by results or the empty state.",
+    "businessValue": "",
+    "risk": "Medium",
+    "dependencies": "",
+    "notes": "Observed during Servynx trial walkthrough 2026-11-08",
+    "sprint": null,
+    "team": null,
+    "issueLinks": [],
+    "url": "https://www.servynx.com",
+    "sourceType": "excel",
+    "importedAt": "2026-11-08T00:00:00.000Z",
+    "originalRowIndex": 13
+  },
+  {
+    "key": "SVX-014",
+    "summary": "Invite providers and track invitations",
+    "description": "As a seeker, I want to invite providers to my requirement and track invitations as Pending, Accepted or Declined.",
+    "status": {
+      "name": "To Do",
+      "category": "To Do"
+    },
+    "priority": {
+      "name": "P2",
+      "id": "2"
+    },
+    "assignee": null,
+    "reporter": null,
+    "created": "2026-11-08T00:00:00.000Z",
+    "updated": "2026-11-08T00:00:00.000Z",
+    "components": [
+      "Invitations Sent"
+    ],
+    "labels": [
+      "servynx",
+      "observed"
+    ],
+    "fixVersions": [
+      "servynx-trial-v1"
+    ],
+    "storyPoints": null,
+    "project": "Servynx",
+    "epic": "Invitations",
+    "acceptanceCriteria": "The All, Pending, Accepted and Declined tabs show only matching invitations.\nA new invitation appears as Pending and increments the dashboard's Invites Sent.\nAn empty tab shows an empty-state message rather than a blank area.",
+    "businessValue": "",
+    "risk": "Medium",
+    "dependencies": "",
+    "notes": "Observed during Servynx trial walkthrough 2026-11-08",
+    "sprint": null,
+    "team": null,
+    "issueLinks": [],
+    "url": "https://www.servynx.com",
+    "sourceType": "excel",
+    "importedAt": "2026-11-08T00:00:00.000Z",
+    "originalRowIndex": 14
+  },
+  {
+    "key": "SVX-015",
+    "summary": "View connected providers",
+    "description": "As a seeker, I want a list of providers I have connected with so that I can open a chat with any of them.",
+    "status": {
+      "name": "To Do",
+      "category": "To Do"
+    },
+    "priority": {
+      "name": "P3",
+      "id": "3"
+    },
+    "assignee": null,
+    "reporter": null,
+    "created": "2026-11-08T00:00:00.000Z",
+    "updated": "2026-11-08T00:00:00.000Z",
+    "components": [
+      "My Connects"
+    ],
+    "labels": [
+      "servynx",
+      "observed"
+    ],
+    "fixVersions": [
+      "servynx-trial-v1"
+    ],
+    "storyPoints": null,
+    "project": "Servynx",
+    "epic": "Connects & Chat",
+    "acceptanceCriteria": "The list loads, and 'Loading…' is replaced by results or an empty state within a reasonable time.\n'All Chats' opens /chat.",
+    "businessValue": "",
+    "risk": "Medium",
+    "dependencies": "",
+    "notes": "Observed during Servynx trial walkthrough 2026-11-08",
+    "sprint": null,
+    "team": null,
+    "issueLinks": [],
+    "url": "https://www.servynx.com",
+    "sourceType": "excel",
+    "importedAt": "2026-11-08T00:00:00.000Z",
+    "originalRowIndex": 15
+  },
+  {
+    "key": "SVX-016",
+    "summary": "Chat with connected providers",
+    "description": "As a seeker, I want to message my connected providers so that we can agree scope and price.",
+    "status": {
+      "name": "To Do",
+      "category": "To Do"
+    },
+    "priority": {
+      "name": "P2",
+      "id": "2"
+    },
+    "assignee": null,
+    "reporter": null,
+    "created": "2026-11-08T00:00:00.000Z",
+    "updated": "2026-11-08T00:00:00.000Z",
+    "components": [
+      "Chat"
+    ],
+    "labels": [
+      "servynx",
+      "observed"
+    ],
+    "fixVersions": [
+      "servynx-trial-v1"
+    ],
+    "storyPoints": null,
+    "project": "Servynx",
+    "epic": "Connects & Chat",
+    "acceptanceCriteria": "Only connected providers can be messaged.\nMessages are delivered and shown in order with timestamps; Refresh fetches new messages.\nContact details hidden by the privacy settings are not exposed through chat metadata.",
+    "businessValue": "",
+    "risk": "High",
+    "dependencies": "",
+    "notes": "Observed during Servynx trial walkthrough 2026-11-08",
+    "sprint": null,
+    "team": null,
+    "issueLinks": [],
+    "url": "https://www.servynx.com",
+    "sourceType": "excel",
+    "importedAt": "2026-11-08T00:00:00.000Z",
+    "originalRowIndex": 16
+  },
+  {
+    "key": "SVX-017",
+    "summary": "Buy credits",
+    "description": "As a seeker, I want to buy credits (quick select 25, 50, 100, 250, 500 or a custom amount) so that I can unlock provider contact details.",
+    "status": {
+      "name": "To Do",
+      "category": "To Do"
+    },
+    "priority": {
+      "name": "P1",
+      "id": "1"
+    },
+    "assignee": null,
+    "reporter": null,
+    "created": "2026-11-08T00:00:00.000Z",
+    "updated": "2026-11-08T00:00:00.000Z",
+    "components": [
+      "Credits"
+    ],
+    "labels": [
+      "servynx",
+      "observed"
+    ],
+    "fixVersions": [
+      "servynx-trial-v1"
+    ],
+    "storyPoints": null,
+    "project": "Servynx",
+    "epic": "Credits & Payments",
+    "acceptanceCriteria": "Quick select fills the amount; a custom amount accepts only positive whole numbers within limits.\nThe price follows the user's pricing region and the Pricing Tiers table.\nAfter a successful payment, Available Credits and the header balance update and a Transaction History row is added.\nA failed or cancelled payment leaves the balance unchanged and shows a clear message.",
+    "businessValue": "",
+    "risk": "Critical",
+    "dependencies": "",
+    "notes": "Observed during Servynx trial walkthrough 2026-11-08",
+    "sprint": null,
+    "team": null,
+    "issueLinks": [],
+    "url": "https://www.servynx.com",
+    "sourceType": "excel",
+    "importedAt": "2026-11-08T00:00:00.000Z",
+    "originalRowIndex": 17
+  },
+  {
+    "key": "SVX-018",
+    "summary": "Unlock provider contact details with credits",
+    "description": "As a seeker, I want to spend credits to unlock a provider's contact details.",
+    "status": {
+      "name": "To Do",
+      "category": "To Do"
+    },
+    "priority": {
+      "name": "P1",
+      "id": "1"
+    },
+    "assignee": null,
+    "reporter": null,
+    "created": "2026-11-08T00:00:00.000Z",
+    "updated": "2026-11-08T00:00:00.000Z",
+    "components": [
+      "Credits"
+    ],
+    "labels": [
+      "servynx",
+      "inferred"
+    ],
+    "fixVersions": [
+      "servynx-trial-v1"
+    ],
+    "storyPoints": null,
+    "project": "Servynx",
+    "epic": "Credits & Payments",
+    "acceptanceCriteria": "Unlocking deducts the stated credits exactly once (no double charge on double click or refresh).\nWith too few credits, the unlock is blocked and the user is offered Buy Credits.\nOnly the channels permitted by the other party's privacy settings are revealed.",
+    "businessValue": "",
+    "risk": "Critical",
+    "dependencies": "",
+    "notes": "Inferred during Servynx trial walkthrough 2026-11-08",
+    "sprint": null,
+    "team": null,
+    "issueLinks": [],
+    "url": "https://www.servynx.com",
+    "sourceType": "excel",
+    "importedAt": "2026-11-08T00:00:00.000Z",
+    "originalRowIndex": 18
+  },
+  {
+    "key": "SVX-019",
+    "summary": "Edit profile, country and pricing region",
+    "description": "As a user, I want to set my full name, display name, country and pricing region so that postal validation and pricing are correct.",
+    "status": {
+      "name": "To Do",
+      "category": "To Do"
+    },
+    "priority": {
+      "name": "P2",
+      "id": "2"
+    },
+    "assignee": null,
+    "reporter": null,
+    "created": "2026-11-08T00:00:00.000Z",
+    "updated": "2026-11-08T00:00:00.000Z",
+    "components": [
+      "Settings"
+    ],
+    "labels": [
+      "servynx",
+      "observed"
+    ],
+    "fixVersions": [
+      "servynx-trial-v1"
+    ],
+    "storyPoints": null,
+    "project": "Servynx",
+    "epic": "Settings & Privacy",
+    "acceptanceCriteria": "Full name (max 100) and display name (max 60, shown publicly) are mandatory, with live counters.\nSelecting a country auto-sets the pricing region, which can be overridden.\nSave Profile persists the changes and shows a confirmation.\nVerified contact details on file are shown; the signed-in email should appear rather than 'No email on file'.",
+    "businessValue": "",
+    "risk": "Medium",
+    "dependencies": "",
+    "notes": "Observed during Servynx trial walkthrough 2026-11-08",
+    "sprint": null,
+    "team": null,
+    "issueLinks": [],
+    "url": "https://www.servynx.com",
+    "sourceType": "excel",
+    "importedAt": "2026-11-08T00:00:00.000Z",
+    "originalRowIndex": 19
+  },
+  {
+    "key": "SVX-020",
+    "summary": "Change password",
+    "description": "As a user, I want to change my password from Settings so that I can keep my account secure.",
+    "status": {
+      "name": "To Do",
+      "category": "To Do"
+    },
+    "priority": {
+      "name": "P1",
+      "id": "1"
+    },
+    "assignee": null,
+    "reporter": null,
+    "created": "2026-11-08T00:00:00.000Z",
+    "updated": "2026-11-08T00:00:00.000Z",
+    "components": [
+      "Settings"
+    ],
+    "labels": [
+      "servynx",
+      "observed"
+    ],
+    "fixVersions": [
+      "servynx-trial-v1"
+    ],
+    "storyPoints": null,
+    "project": "Servynx",
+    "epic": "Settings & Privacy",
+    "acceptanceCriteria": "The current password is required; the new password must meet the strength rules and be confirmed.\nOther sessions are signed out after a change (or the user is offered this).",
+    "businessValue": "",
+    "risk": "High",
+    "dependencies": "",
+    "notes": "Observed during Servynx trial walkthrough 2026-11-08",
+    "sprint": null,
+    "team": null,
+    "issueLinks": [],
+    "url": "https://www.servynx.com",
+    "sourceType": "excel",
+    "importedAt": "2026-11-08T00:00:00.000Z",
+    "originalRowIndex": 20
+  },
+  {
+    "key": "SVX-021",
+    "summary": "Delete account with typed confirmation",
+    "description": "As a user, I want to permanently delete my account with a typed confirmation so that my data is anonymised.",
+    "status": {
+      "name": "To Do",
+      "category": "To Do"
+    },
+    "priority": {
+      "name": "P1",
+      "id": "1"
+    },
+    "assignee": null,
+    "reporter": null,
+    "created": "2026-11-08T00:00:00.000Z",
+    "updated": "2026-11-08T00:00:00.000Z",
+    "components": [
+      "Settings"
+    ],
+    "labels": [
+      "servynx",
+      "observed"
+    ],
+    "fixVersions": [
+      "servynx-trial-v1"
+    ],
+    "storyPoints": null,
+    "project": "Servynx",
+    "epic": "Settings & Privacy",
+    "acceptanceCriteria": "'Delete My Account' stays disabled until the exact text DELETE MY ACCOUNT is typed.\nAfter deletion, the user is signed out, cannot sign in again, and personal data is anonymised.",
+    "businessValue": "",
+    "risk": "Critical",
+    "dependencies": "",
+    "notes": "Observed during Servynx trial walkthrough 2026-11-08",
+    "sprint": null,
+    "team": null,
+    "issueLinks": [],
+    "url": "https://www.servynx.com",
+    "sourceType": "excel",
+    "importedAt": "2026-11-08T00:00:00.000Z",
+    "originalRowIndex": 21
+  },
+  {
+    "key": "SVX-022",
+    "summary": "Switch between Seeker and Provider roles",
+    "description": "As a user, I want to switch between Seeker and Provider views so that one account can both post and respond to requirements.",
+    "status": {
+      "name": "To Do",
+      "category": "To Do"
+    },
+    "priority": {
+      "name": "P2",
+      "id": "2"
+    },
+    "assignee": null,
+    "reporter": null,
+    "created": "2026-11-08T00:00:00.000Z",
+    "updated": "2026-11-08T00:00:00.000Z",
+    "components": [
+      "Role Switch"
+    ],
+    "labels": [
+      "servynx",
+      "inferred"
+    ],
+    "fixVersions": [
+      "servynx-trial-v1"
+    ],
+    "storyPoints": null,
+    "project": "Servynx",
+    "epic": "Role Switch & Provider Leads",
+    "acceptanceCriteria": "The header badge shows the current role, and Switch toggles the navigation to the other role's menu.\nThe role persists across page reloads.\nSeeker-only pages are not reachable in Provider view and vice versa.",
+    "businessValue": "",
+    "risk": "High",
+    "dependencies": "",
+    "notes": "Inferred during Servynx trial walkthrough 2026-11-08",
+    "sprint": null,
+    "team": null,
+    "issueLinks": [],
+    "url": "https://www.servynx.com",
+    "sourceType": "excel",
+    "importedAt": "2026-11-08T00:00:00.000Z",
+    "originalRowIndex": 22
+  },
+  {
+    "key": "SVX-023",
+    "summary": "Provider purchases a lead",
+    "description": "As a provider, I want to see matching requirements and purchase a lead with credits so that I can contact the seeker.",
+    "status": {
+      "name": "To Do",
+      "category": "To Do"
+    },
+    "priority": {
+      "name": "P1",
+      "id": "1"
+    },
+    "assignee": null,
+    "reporter": null,
+    "created": "2026-11-08T00:00:00.000Z",
+    "updated": "2026-11-08T00:00:00.000Z",
+    "components": [
+      "Provider Leads"
+    ],
+    "labels": [
+      "servynx",
+      "inferred"
+    ],
+    "fixVersions": [
+      "servynx-trial-v1"
+    ],
+    "storyPoints": null,
+    "project": "Servynx",
+    "epic": "Role Switch & Provider Leads",
+    "acceptanceCriteria": "Providers see only requirements matching their categories and region.\nPurchasing a lead deducts credits and reveals only the contact channels the seeker allowed.\nThe seeker's 'Providers Interested' count increases.",
+    "businessValue": "",
+    "risk": "Critical",
+    "dependencies": "",
+    "notes": "Inferred during Servynx trial walkthrough 2026-11-08",
+    "sprint": null,
+    "team": null,
+    "issueLinks": [],
+    "url": "https://www.servynx.com",
+    "sourceType": "excel",
+    "importedAt": "2026-11-08T00:00:00.000Z",
+    "originalRowIndex": 23
+  },
+  {
+    "key": "SVX-024",
+    "summary": "In-app notifications",
+    "description": "As a user, I want notifications for invitations, provider interest and new chat messages.",
+    "status": {
+      "name": "To Do",
+      "category": "To Do"
+    },
+    "priority": {
+      "name": "P3",
+      "id": "3"
+    },
+    "assignee": null,
+    "reporter": null,
+    "created": "2026-11-08T00:00:00.000Z",
+    "updated": "2026-11-08T00:00:00.000Z",
+    "components": [
+      "Notifications"
+    ],
+    "labels": [
+      "servynx",
+      "observed"
+    ],
+    "fixVersions": [
+      "servynx-trial-v1"
+    ],
+    "storyPoints": null,
+    "project": "Servynx",
+    "epic": "Notifications",
+    "acceptanceCriteria": "The bell shows an unread indicator for new events, and opening it lists them newest first.\nClicking a notification opens the related page and marks it read.",
+    "businessValue": "",
+    "risk": "Low",
+    "dependencies": "",
+    "notes": "Observed during Servynx trial walkthrough 2026-11-08",
+    "sprint": null,
+    "team": null,
+    "issueLinks": [],
+    "url": "https://www.servynx.com",
+    "sourceType": "excel",
+    "importedAt": "2026-11-08T00:00:00.000Z",
+    "originalRowIndex": 24
+  }
+]

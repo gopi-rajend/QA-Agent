@@ -1,0 +1,20 @@
+User Story: SVX-008 — Attach supporting files to a requirement
+
+Summary:
+As a seeker, I want to attach up to 5 files of 10MB each so that providers understand my need.
+
+Epic:
+Post Requirement
+
+Acceptance Criteria:
+
+Up to 5 files of up to 10MB each are accepted.
+
+A 6th file, or a file over 10MB, is rejected with a clear message and the others are kept.
+
+Executable or unsupported file types are rejected.
+
+Priority: P2
+Risk: High
+Status: To Do
+Basis: Observed

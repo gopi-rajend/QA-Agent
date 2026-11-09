@@ -1,0 +1,20 @@
+User Story: SVX-023 — Provider purchases a lead
+
+Summary:
+As a provider, I want to see matching requirements and purchase a lead with credits so that I can contact the seeker.
+
+Epic:
+Role Switch & Provider Leads
+
+Acceptance Criteria:
+
+Providers see only requirements matching their categories and region.
+
+Purchasing a lead deducts credits and reveals only the contact channels the seeker allowed.
+
+The seeker's 'Providers Interested' count increases.
+
+Priority: P1
+Risk: Critical
+Status: To Do
+Basis: Inferred

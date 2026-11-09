@@ -1,0 +1,20 @@
+User Story: SVX-006 — Validate service location postal code by region
+
+Summary:
+As a seeker, I want my postal code validated against my region so that providers in the right area see my requirement.
+
+Epic:
+Post Requirement
+
+Acceptance Criteria:
+
+Given valid codes for supported regions (e.g. 600001 India, M5H 2N2 Canada, 10001 US), then the code is accepted.
+
+Given an invalid or mismatched code, then an inline error is shown and submission is blocked.
+
+Leading/trailing spaces and lowercase Canadian codes are normalised.
+
+Priority: P1
+Risk: High
+Status: To Do
+Basis: Observed
